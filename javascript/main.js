@@ -1,4 +1,8 @@
-var end = new Date('01/07/2024 12:00 AM');
+CountDownTimer('01/07/2024 10:10 AM', 'countdown');
+
+function CountDownTimer(dt, id)
+{
+    var end = new Date(dt);
 
     var _second = 1000;
     var _minute = _second * 60;
@@ -12,7 +16,7 @@ var end = new Date('01/07/2024 12:00 AM');
         if (distance < 0) {
 
             clearInterval(timer);
-            document.getElementById('countdown').innerHTML = 'EXPIRED!';
+            document.getElementById(id).innerHTML = 'Скрипт вышел! Перезагружайте страницу и в течение 5 минут появится её содержимое.';
 
             return;
         }
@@ -21,10 +25,11 @@ var end = new Date('01/07/2024 12:00 AM');
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
 
-        document.getElementById('countdown').innerHTML = days + 'days ';
-        document.getElementById('countdown').innerHTML += hours + 'hrs ';
-        document.getElementById('countdown').innerHTML += minutes + 'mins ';
-        document.getElementById('countdown').innerHTML += seconds + 'secs';
+        document.getElementById(id).innerHTML = days + ' дня, ';
+        document.getElementById(id).innerHTML += hours + ':';
+        document.getElementById(id).innerHTML += minutes + ':';
+        document.getElementById(id).innerHTML += seconds;
     }
 
     timer = setInterval(showRemaining, 1000);
+}
