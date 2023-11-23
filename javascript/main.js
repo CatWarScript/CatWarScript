@@ -33,6 +33,4 @@ function CountDownTimer(dt, id)
     timer = setInterval(showRemaining, 1000);
 }
 
-$(document).ready(function(){
-alert(jQuery.fn.jquery);
-});
+console.log('Хуй');
