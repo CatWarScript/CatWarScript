@@ -1,5 +1,5 @@
 CountDownTimer('01/07/2024 10:10 AM', 'countdown');
-
+CountDownTimer('01/07/2024 10:10 AM', 'newcountdown');
 function CountDownTimer(dt, id)
 {
     var end = new Date(dt);
