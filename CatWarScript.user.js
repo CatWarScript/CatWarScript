@@ -150,7 +150,7 @@ function appendToElementOrFallback(primaryElement, secondaryElement, elementToAd
     $(primaryElement).append(elementToAdd);
   }
   else {
-    $(secondaryElement).append(elementToAdd);
+    $(secondaryElement).after(elementToAdd);
   }
 }
 const pageurl = window.location.href;
