@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         CatWar Script v0.1
+// @name         CatWarScript
 // @version      0.1
 // @description  Новый код-скрипт для браузерной игры CatWar, разработчики которого направлены на больший контакт с аудиторией!
 // @author       Krivodushie & Psiii
 // @copyright    2024 Дурное Сновидение (https://catwar.su/cat1293224) & Заря (https://catwar.su/cat590698)
 // @license      MIT; https://opensource.org/licenses/MIT
-// @updateURL    h1/raw/main/CatWarScript.user.js
+// @updateURL    https://github.com/CatWarScript/CatWarScript/raw/main/CatWarScript.user.js
 // @match        *://catwar.su/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM.xmlHttpRequest
