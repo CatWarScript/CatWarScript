@@ -731,11 +731,45 @@ function cw3() {
      }); */
     if (globals['cstmDfctShowColors']) { // Включить подсветку клетки с больными
       let cstmDfctColors = `
-            div[style*="/defects/disease/"] {background-color: rgba(238, 255, 70, 0.25) !important; padding-top: 16px !important;}
-            div[style*="/defects/trauma/"] {background-color: rgba(70, 255, 254, 0.25) !important; padding-top: 16px !important;}
-            div[style*="/defects/drown/"] {background-color: rgba(104, 255, 70, 0.25) !important; padding-top: 16px !important;}
-            div[style*="/defects/wound/"] {background-color: rgba(70, 70, 255, 0.25) !important; padding-top: 16px !important;}
-            div[style*="/defects/poisoning/"] {background-color: rgba(255, 70, 70, 0.25) !important; padding-top: 16px !important;}
+            /* КАШЕЛЬ */
+            #tr_field [style*='disease'] {
+            background-color: rgba(238, 255, 70, .25) !important;
+            padding-top: 16px; }
+            
+            ol.mouth>li>div.e>div[style*='disease'] {
+            padding-top: 0px !important; }
+            
+            /* СКАЛЫ */
+            #tr_field [style*='trauma'] {
+            background-color: rgba(70, 255, 239, .25) !important;
+            padding-top: 16px; }
+            
+            ol.mouth>li>div.e>div[style*='trauma'] {
+            padding-top: 0px !important; }
+            
+            /* ВОДЫ */
+            #tr_field [style*='drown'] {
+            background-color: rgba(104, 255, 70, .25) !important;
+            padding-top: 16px; }
+            
+            ol.mouth>li>div.e>div[style*='drown'] {
+            padding-top: 0px !important; }
+            
+            /* РАНЫ */
+            #tr_field [style*='wound'] {
+            background-color: rgba(70, 70, 255, .25) !important;
+            padding-top: 16px; }
+            
+            ol.mouth>li>div.e>div[style*='wound'] {
+            padding-top: 0px !important; }
+            
+            /* ОТРАВЛЕНИЕ */
+            #tr_field [style*='poisoning'] {
+            background-color: rgba(255, 70, 70, .25) !important;
+            padding-top: 16px; }
+            
+            ol.mouth>li>div.e>div[style*='poisoning'] {
+            padding-top: 0px !important; }
             `
       $('#cstmDfctStyle').append(cstmDfctColors);
     }
@@ -808,7 +842,7 @@ function cw3() {
 
             ol.mouth>li>div.e>div[style*='dirt/base/1/3'], ol.mouth>li>div.e>div[style*='dirt/base/2/3'], ol.mouth>li>div.e>div[style*='dirt/base/1/4'], ol.mouth>li>div.e>div[style*='dirt/base/2/4'] {
             background-color: rgba(146, 70, 255, 0.25) !important;
-            padding-top: 16px !important;}
+            padding-top: 0px !important;}
             `
         $('#cstmDfctStyle').append(highDirtColors);
       }
@@ -832,7 +866,7 @@ function cw3() {
 
             ol.mouth>li>div.e>div[style*='dirt/base/1/1'], ol.mouth>li>div.e>div[style*='dirt/base/2/1'], ol.mouth>li>div.e>div[style*='dirt/base/1/2'], ol.mouth>li>div.e>div[style*='dirt/base/2/2'] {
             background-color: rgba(146, 70, 255, 0.25) !important;
-            padding-top: 16px !important;}
+            padding-top: 0px !important;}
             `
         $('#cstmDfctStyle').append(lowDirtColors);
       }
@@ -899,9 +933,11 @@ function cw3() {
   if (globals['cstmDfctShowPodstilki']) {
     let cstmDfctPodstilkiDelay = `<style id="dfctPodstilki">
             #tr_field [style*='/cw3/cats/0/costume/295.png'], [style*='/cw3/cats/-1/costume/295.png'], [style*='/cw3/cats/1/costume/295.png'] {
-            background-color: ${globals['cstmDfctPodstilki']} !important;
-            padding-top: 16px !important;
-            opacity: 0.25;}
+            background-color: rgba(121, 85, 61, .25) !important;
+            padding-top: 16px !important;}
+            
+            ol.mouth>li>div.e>div[style*='/cw3/cats/0/costume/295.png'], ol.mouth>li>div.e>div[style*='/cw3/cats/-1/costume/295.png'], ol.mouth>li>div.e>div[style*='/cw3/cats/1/costume/295.png'] {
+            padding-top: 0px !important; }
             </style>`
     $('head').append(cstmDfctPodstilkiDelay);
   }
