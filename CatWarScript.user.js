@@ -5,7 +5,7 @@
 // @author       Krivodushie & Psiii
 // @copyright    2024 Дурное Сновидение (https://catwar.su/cat1293224) & Заря (https://catwar.su/cat590698)
 // @license      MIT; https://opensource.org/licenses/MIT
-// @updateURL    https://github.com/CatWarScript/CatWarScript/raw/main/CatWarScript.user.js
+// @updateURL    h1/raw/main/CatWarScript.user.js
 // @match        *://catwar.su/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM.xmlHttpRequest
@@ -153,7 +153,6 @@ function appendToElementOrFallback(primaryElement, secondaryElement, elementToAd
     $(secondaryElement).append(elementToAdd);
   }
 }
-
 const pageurl = window.location.href;
 const isCW3 = (/^https:\/\/\w?\.?catwar.su\/cw3(?!(\/kns|\/jagd))/.test(pageurl));
 const isSite = !(/^https:\/\/\w?\.?catwar.su\/cw3(\/kns|\/jagd)?.*/.test(pageurl));
@@ -174,16 +173,16 @@ catch (error) {
 }
 
 function sett() {
-  const html = `<div id="cwsSet"><i>(c) CWScript</i><b>Настройки</b><div id="cwsSetList"><div><input class="cs-set" id="textTemplates" type="checkbox"${globals.textTemplates?' checked':''}><label for="textTemplates">Отображать шаблоны для личных сообщений</label></div><hr>
+  const html = `<br><br><div id="cwsSet"><i>(c) CWScript</i><b>Настройки</b><div id="cwsSetList"><div><input class="cs-set" id="textTemplates" type="checkbox"${globals.textTemplates?' checked':''}><label for="textTemplates">Отображать шаблоны для личных сообщений</label></div><hr>
                 <div><input class="cs-set" id="inGameClock" type="checkbox"${globals.inGameClock?' checked':''}><label for="inGameClock">Включить часы</label></div>
                 <div><input class="cs-set" id="showDate" type="checkbox"${globals.isDateShow?' checked':''}><label for="showDate">Показывать дату</label></div>
                 <table><tr><td><div><input class="cs-set" id="deviceTime" type="radio" name="timeSource"${!globals.isClockMoscow?' checked':''}><label for="deviceTime">Время с устройства</label></div></td>
                 <td><div><input class="cs-set" id="moscowTime" type="radio" name="timeSource"${globals.isClockMoscow?' checked':''}><label for="moscowTime">Московское время</label></div></td></tr></table><hr>
                 <div><input class="cs-set" id="phoneFightPanel" type="checkbox"${globals.phoneFightPanel?' checked':''}><label for="phoneFightPanel">Переместить кнопочки окошка БР для телефонщиков</label></div><hr>
-                <div><input class="cs-set" id="deleteDangerModes" type="checkbox"${globals.deleteDangerModes?' checked':''}><label for="deleteDangerModes">Убрать кнопки входа в опасные боережимы</label></div><hr>
-                <div><input class="cs-set" id="nightLagsWarning" type="checkbox"${globals.nightLagsWarning?' checked':''}><label for="nightLagsWarning">Уведомление в период с 03:00 по 04:00 по МСК</label></div><hr>
+                <div><input class="cs-set" id="friendlyCatWar" type="checkbox"${globals.friendlyCatWar?' checked':''}><label for="friendlyCatWar">Убрать кнопки входа в опасные боережимы</label></div><hr>
+                <div><input class="cs-set" id="nightLagsWarning" type="checkbox"${globals.nightLagsWarning?' checked':''}><label for="nightLagsWarning">Предупреждение об осторожности на водах/лазательных локациях в период с 03:00 по 04:00 по МСК</label></div><hr>
                 <div id="dontRdnLS"><input class="cs-set" id="dontReadenLS" type="checkbox"${globals.dontReadenLS?' checked':''}><label for="dontReadenLS">Функция “Непрочитанное ЛС” только для себя</label></div><hr>
-                <div><input class="cs-set" id="timerForLS" type="checkbox"${globals.timerForLS?' checked':''}><label for="timerForLS">Таймер до удаления сообщений в ЛС</label></div><hr>
+                <div><input class="cs-set" id="timerForLS" type="checkbox"${globals.timerForLS?' checked':''}><label for="timerForLS">Таймер до удаления сообщений в ЛС (выделяет непрочитанные ЛС, которые пришли от 6 до 14 дней назад)</label></div><hr>
                 <div><input class="cs-set" id="hideWoundWarning" type="checkbox"${globals.hideWoundWarning?' checked':''}><label for="hideWoundWarning">Убрать предупреждение "Вы ранены" со всех страниц сайта</label></div><hr>
                 <div><input class="cs-set" id="customDefectDelay" type="checkbox"${globals.customDefectDelay?' checked':''}><label for="customDefectDelay">Выделение болезней циферкой/подсветкой в Игровой</label></div>
                 <div><input class="cs-set" id="cstmDfctShowColors" type="checkbox"${globals.cstmDfctShowColors?' checked':''}><label for="cstmDfctShowColors">Подсвечивать клетку игрока с болезнями</label></div>
@@ -201,9 +200,22 @@ function sett() {
                 <div><input class="cs-set" id="cstmItmStickDelay" type="checkbox"${globals.cstmItmStickDelay?' checked':''}><label for="cstmItmStickDelay">Подсвечивать крепкие ветки, вьюнки, костоправы и плотные водоросли</label></div>
                 <div><input class="cs-set" id="cstmItmDustDelay" type="checkbox"${globals.cstmItmDustDelay?' checked':''}><label for="cstmItmDustDelay">Подсвечивать звёздную пыль</label></div>
                 <div><input class="cs-set" id="cstmItmMusorDelay" type="checkbox"${globals.cstmItmMusorDelay?' checked':''}><label for="cstmItmMusorDelay">Подсвечивать травящие предметы</label></div><hr>
-                <div><input class="cs-set" id="reallyImportantButton" type="checkbox"${globals.reallyImportantButton?' checked':''}><label for="reallyImportantButton">Кнопка "Удалить вар"</label></div><hr>
                 <div><input class="cs-set" id="boneCorrectTimer" type="checkbox"${globals.boneCorrectTimer?' checked':''}><label for="boneCorrectTimer">Напоминание снимать костоправ</label></div><br></div><br></div><br>`
   appendToElementOrFallback('#branch', 'a[href="del"]', html);
+  $('#nightLagsWarning').on('change', function() {
+    if (!this.checked) { // Если пользователь снимает галочку
+      let userConfirmation = confirm("Вы уверены, что хотите отключить предупреждение о ночных лагах?");
+      if (!userConfirmation) { // Если пользователь нажал "Отмена"
+        this.checked = true; // Возвращаем галочку обратно
+      }
+      else {
+        // Здесь ваш код для отключения функции nightLagsWarning
+      }
+    }
+    else {
+      // Здесь ваш код для включения функции nightLagsWarning
+    }
+  });
   let cssForSett = `<style>
                 div#cwsSet>b {
                 display: block;
@@ -360,7 +372,6 @@ function sett() {
     toggleTimeBlock();
   });
 }
-
 
 function dm() {
   if (globals['dontReadenLS']) {
@@ -679,7 +690,6 @@ function dm() {
   $('head').append(css);
 }
 
-
 function cw3() {
   if (globals['inGameClock']) {
     let clockHtml = `<div id="clockContainer">
@@ -882,7 +892,8 @@ function cw3() {
     let cstmDfctDivers = `<style id="dfctDivers">
             #tr_field [style*='/cw3/cats/0/costume/7.png'], [style*='/cw3/cats/-1/costume/7.png'] {
             content: url(https://i.ibb.co/dG6mhTj/image.png) !important;
-            padding-top: 16px !important; }
+            padding-top: 16px !important;
+            padding-left: 1.5px !important;}
             </style>`
     $('head').append(cstmDfctDivers);
     console.log('ааааа')
@@ -909,7 +920,7 @@ function cw3() {
     let cstmItmStyle = `<style id='cstmItmStyle'></style>`
     $('head').append(cstmItmStyle);
     /*    let rgbHerb = hexToRgb(globals['cstmItmHerbClr']);
-        let rgbaHerb = `rgba(${rgbHerb.r}, ${rgbHerb.g}, ${rgbHerb.b}, ${globals['cstmItmOpacity']})`;*/
+          let rgbaHerb = `rgba(${rgbHerb.r}, ${rgbHerb.g}, ${rgbHerb.b}, ${globals['cstmItmOpacity']})`;*/
     if (globals['cstmItmHerbDelay']) { // Отображение трав
       let cstmItmHerbs = `
             .cage_items[style*='things/13.png'],
@@ -930,15 +941,15 @@ function cw3() {
             .cage_items[style*='things/116.png'],
             .cage_items[style*='things/119.png'],
             .cage_items[style*='things/655.png'] {
-                background-color: rgba (43, 255, 117, 0.25) !important;
+            background-color: rgba (43, 255, 117, 0.25) !important;
             }
             `
       $('#cstmItmStyle').append(cstmItmHerbs);
       console.log('Цвет подсветки ТРАВ ' + globals['cstmItmHerbClr']);
     }
     if (globals['cstmItmMossDelay']) { // Отображение мха
-      /*     let rgbMoss = hexToRgb(globals['cstmItmMossClr']);
-           let rgbaMoss = `rgba(${rgbMoss.r}, ${rgbMoss.g}, ${rgbMoss.b}, ${globals['cstmItmOpacity']})`;*/
+      /*    let rgbMoss = hexToRgb(globals['cstmItmMossClr']);
+            let rgbaMoss = `rgba(${rgbMoss.r}, ${rgbMoss.g}, ${rgbMoss.b}, ${globals['cstmItmOpacity']})`;*/
       let cstmItmMoss = `
             /* МОХ (обычный, водяной и желчный) */
             .cage_items[style*='things/75.png'], .cage_items[style*='things/78.png'], .cage_items[style*='things/95.png'] {
@@ -947,8 +958,8 @@ function cw3() {
       console.log('Цвет подсветки МХА ' + globals['cstmItmMossClr']);
     }
     if (globals['cstmItmWebDelay']) { // Отображение паутины
-      /*  let rgbWeb = hexToRgb(globals['cstmItmWebClr']);
-        let rgbaWeb = `rgba(${rgbWeb.r}, ${rgbWeb.g}, ${rgbWeb.b}, ${globals['cstmItmOpacity']})`; */
+      /*    let rgbWeb = hexToRgb(globals['cstmItmWebClr']);
+            let rgbaWeb = `rgba(${rgbWeb.r}, ${rgbWeb.g}, ${rgbWeb.b}, ${globals['cstmItmOpacity']})`; */
       let cstmItmWeb = `
             /* ПАУТИНА */
             .cage_items[style*='things/20.png'] {
@@ -969,8 +980,8 @@ function cw3() {
     console.log('Цвет подсветки STICKS ' + globals['cstmItmStickClr']);
   }
   if (globals['cstmItmDustDelay']) { // Отображение Звёздной Пыли
-    /*    let rgbDust = hexToRgb(globals['cstmItmDustClr']);
-        let rgbaDust = `rgba(${rgbDust.r}, ${rgbDust.g}, ${rgbDust.b}, ${globals['cstmItmOpacity']})`;*/
+    /*      let rgbDust = hexToRgb(globals['cstmItmDustClr']);
+            let rgbaDust = `rgba(${rgbDust.r}, ${rgbDust.g}, ${rgbDust.b}, ${globals['cstmItmOpacity']})`; */
     let cstmItmDust = `
             /* ПЫЛЬ */
             .cage_items[style*='things/94.png'], .cage_items[style*='things/385.png'], .cage_items[style*='things/386.png'], .cage_items[style*='things/387.png'], .cage_items[style*='things/388.png'], .cage_items[style*='things/389.png'], .cage_items[style*='things/390.png'], .cage_items[style*='things/391.png'], .cage_items[style*='things/392.png'] {
@@ -979,21 +990,18 @@ function cw3() {
     console.log('Цвет подсветки ПЫЛИ ' + globals['cstmItmDustClr']);
   }
   if (globals['cstmItmMusorDelay']) {
-    /*  let rgbMusor = hexToRgb(globals['cstmItmMusorClr']);
-      let rgbaMusor = `rgba(${rgbMusor.r}, ${rgbMusor.g}, ${rgbMusor.b}, ${globals['cstmItmOpacity']})`; */
+    /*      let rgbMusor = hexToRgb(globals['cstmItmMusorClr']);
+            let rgbaMusor = `rgba(${rgbMusor.r}, ${rgbMusor.g}, ${rgbMusor.b}, ${globals['cstmItmOpacity']})`; */
     let cstmItmMusor = `
             /* КОСТИ */
             .cage_items[style*='things/985.png'], .cage_items[style*='things/986.png'], .cage_items[style*='things/987.png'], .cage_items[style*='things/988.png'], .cage_items[style*='things/989.png'] {
             background-color: rgba (255, 43, 43, 0.25) !important;}
-
             /* ПАДАЛЬ, ГНИЛЬ */
             .cage_items[style*='things/44.png'], .cage_items[style*='things/180.png'] {
             background-color: rgba (255, 43, 43, 0.25) !important;}
-
             /* МОХ (испорченный) */
             .cage_items[style*='things/77.png'] {
             background-color: rgba (255, 43, 43, 0.25) !important;}
-
             /* МУСОР */
             .cage_items[style*='things/7801.png'], .cage_items[style*='things/7802.png'], .cage_items[style*='things/7803.png'], .cage_items[style*='things/7804.png'], .cage_items[style*='things/7805.png'], .cage_items[style*='things/7806.png'] {
             background-color: rgba (255, 43, 43, 0.25) !important;}
@@ -1001,49 +1009,48 @@ function cw3() {
   }
   if (globals['phoneFightPanel']) {
     let dangerModes = $('input[value="T+1"], input[value="T+2"], input[value="T+3"]').clone();
-    $('#fightPanel').append(dangerModes);
+    $('input[value="T+1"], input[value="T+2"], input[value="T+3"]').remove();
+    $('#fightLog').after(dangerModes);
     if ($('#fteams-wrap').length === 0) { // Проверка на наличие модифицированного БР
       // Если элемента нет, меняем стиль окна боережима
       $('#fightPanel').css('height', 'auto'); // или установите определенное значение вместо 'auto'
     }
     let fightPanelStyle = `
       <style id="fightPanelStyle">
-        /*  [value="T+1"] {
-        position: absolute;
-        top: 180px;
-        left: 0px; }
-
-        [value="T+2"] {
-        position: absolute;
-        top: 180px;
-        left: 70px; }
-
-        [value="T+3"] {
-        position: absolute;
-        top: 180px;
-        left: 140px; }
-
-        .hotkey {
-        margin-left: 15px;
-        width: 40px;
-        border-radius: 2px; }
-
-        img#block {
-        transform: scale(105%);
-        position: relative;
-        left: 5px;
-        top: 1.8px; } */
+[value="T+1"] {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    width: 65px !important;}
+[value="T+2"] {
+    position: relative;
+    bottom: 0px;
+    left: 31px;
+    width: 65px !important;}
+[value="T+3"] {
+    position: relative;
+    bottom: 0px;
+    left: 62px;
+    width: 65px !important;}
+.hotkey {
+    margin-left: 15px;
+    width: 40px;
+    border-radius: 2px;}
+img#block {
+    transform: scale(105%);
+    position: relative;
+    left: 5px;
+    top: 1.8px;}
       </style>
       `
     $('head').append(fightPanelStyle);
   }
-  if (globals['deleteDangerModes']) {
+  if (globals['friendlyCatWar']) {
     $('#fightPanel input[value="T+1"]').remove();
     $('#fightPanel input[value="T+2"]').remove();
     $('#fightPanel input[value="T+3"]').remove();
   }
 }
-
 
 function myCat() {
   if (globals['boneCorrectTimer']) {
@@ -1134,7 +1141,6 @@ function myCat() {
     $('head').append(cssBoneCorrect);
   }
 }
-
 
 function all() {
   function addFont() {
@@ -1368,53 +1374,7 @@ html {
   if (globals['nightLagsWarning']) {
     nightLagsWarning();
   }
-  let count = 0;
-  let intervalId;
-  let refreshCount = localStorage.getItem('refreshCount') || 0;
-  if (refreshCount < 3) {
-    if (localStorage.getItem('timerStarted')) {
-      startTimer();
-    }
-    $('#deleteButton').click(function() {
-      if (confirm('Вы уверены, что хотите удалить CatWar?')) {
-        startTimer();
-        localStorage.setItem('timerStarted', true);
-      }
-    });
-    $(document).click(function() {
-      count++;
-      if (count >= 7200) {
-        clearInterval(intervalId);
-        localStorage.removeItem('timerStarted');
-        alert('Удаление отменено');
-      }
-    });
-  }
-  else {
-    localStorage.removeItem('refreshCount');
-  }
-
-
-  function startTimer() {
-    let counter = 100;
-    intervalId = setInterval(function() {
-      if (counter === 0) {
-        clearInterval(intervalId);
-        $('body').fadeOut(1000, function() {
-          $(this).remove();
-          $('html').append('<div style="text-align: center; padding-top: 20%; font-size: 2em;">CatWar успешно удалён!</div>');
-        });
-      }
-      else {
-        $('#counter').text(counter--);
-      }
-    }, 1000);
-  }
-  window.onbeforeunload = function() {
-    localStorage.setItem('refreshCount', ++refreshCount);
-  };
 }
-
 
 function site() {
   if (globals['hideWoundWarning']) {
