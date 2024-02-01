@@ -203,17 +203,15 @@ function sett() {
                 <div><input class="cs-set" id="boneCorrectTimer" type="checkbox"${globals.boneCorrectTimer?' checked':''}><label for="boneCorrectTimer">Напоминание снимать костоправ</label></div><br></div><br></div><br>`
   appendToElementOrFallback('#branch', 'a[href="del"]', html);
   $('#nightLagsWarning').on('change', function() {
-    if (!this.checked) { // Если пользователь снимает галочку
+    if (!this.checked) {
       let userConfirmation = confirm("Вы уверены, что хотите отключить предупреждение о ночных лагах?");
-      if (!userConfirmation) { // Если пользователь нажал "Отмена"
-        this.checked = true; // Возвращаем галочку обратно
+      if (!userConfirmation) {
+        this.checked = true;
       }
       else {
-        // Здесь ваш код для отключения функции nightLagsWarning
       }
     }
     else {
-      // Здесь ваш код для включения функции nightLagsWarning
     }
   });
   let cssForSett = `<style>
@@ -733,11 +731,11 @@ function cw3() {
      }); */
     if (globals['cstmDfctShowColors']) { // Включить подсветку клетки с больными
       let cstmDfctColors = `
-            div[style*="/defects/disease/"] {background-color: rgba(238, 255, 70, 0.4) !important; padding-top: 16px !important;}
-            div[style*="/defects/trauma/"] {background-color: rgba(70, 255, 254, 0.4) !important; padding-top: 16px !important;}
-            div[style*="/defects/drown/"] {background-color: rgba(104, 255, 70, 0.4) !important; padding-top: 16px !important;}
-            div[style*="/defects/wound/"] {background-color: rgba(70, 70, 255, 0.4) !important; padding-top: 16px !important;}
-            div[style*="/defects/poisoning/"] {background-color: rgba(255, 70, 70, 0.4) !important; padding-top: 16px !important;}
+            div[style*="/defects/disease/"] {background-color: rgba(238, 255, 70, 0.25) !important; padding-top: 16px !important;}
+            div[style*="/defects/trauma/"] {background-color: rgba(70, 255, 254, 0.25) !important; padding-top: 16px !important;}
+            div[style*="/defects/drown/"] {background-color: rgba(104, 255, 70, 0.25) !important; padding-top: 16px !important;}
+            div[style*="/defects/wound/"] {background-color: rgba(70, 70, 255, 0.25) !important; padding-top: 16px !important;}
+            div[style*="/defects/poisoning/"] {background-color: rgba(255, 70, 70, 0.25) !important; padding-top: 16px !important;}
             `
       $('#cstmDfctStyle').append(cstmDfctColors);
     }
@@ -805,11 +803,11 @@ function cw3() {
       if (globals['cstmDfctShowColors']) { // Показывать 3-4 стадии грязи подсветкой клеток
         let highDirtColors = `
             div[style*='dirt/base/1/3'], div[style*='dirt/base/2/3'], div[style*='/dirt/base/1/4.png'], div[style*='dirt/base/2/4'] {
-            background-color: rgba(146, 70, 255, 0.4) !important;
+            background-color: rgba(146, 70, 255, 0.25) !important;
             padding-top: 16px !important;}
 
             ol.mouth>li>div.e>div[style*='dirt/base/1/3'], ol.mouth>li>div.e>div[style*='dirt/base/2/3'], ol.mouth>li>div.e>div[style*='dirt/base/1/4'], ol.mouth>li>div.e>div[style*='dirt/base/2/4'] {
-            background-color: rgba(146, 70, 255, 0.4) !important;
+            background-color: rgba(146, 70, 255, 0.25) !important;
             padding-top: 16px !important;}
             `
         $('#cstmDfctStyle').append(highDirtColors);
@@ -829,11 +827,11 @@ function cw3() {
       if (globals['cstmDfctShowColors']) { // Подсветка 1-2 стадий грязи подсветкой клеток
         let lowDirtColors = `
             div[style*='dirt/base/1/1'], div[style*='dirt/base/2/1'], div[style*='/dirt/base/1/2.png'], div[style*='dirt/base/2/2'] {
-            background-color: rgba(146, 70, 255, 0.4) !important;
+            background-color: rgba(146, 70, 255, 0.25) !important;
             padding-top: 16px !important;}
 
             ol.mouth>li>div.e>div[style*='dirt/base/1/1'], ol.mouth>li>div.e>div[style*='dirt/base/2/1'], ol.mouth>li>div.e>div[style*='dirt/base/1/2'], ol.mouth>li>div.e>div[style*='dirt/base/2/2'] {
-            background-color: rgba(146, 70, 255, 0.4) !important;
+            background-color: rgba(146, 70, 255, 0.25) !important;
             padding-top: 16px !important;}
             `
         $('#cstmDfctStyle').append(lowDirtColors);
@@ -945,7 +943,6 @@ function cw3() {
             }
             `
       $('#cstmItmStyle').append(cstmItmHerbs);
-      console.log('Цвет подсветки ТРАВ ' + globals['cstmItmHerbClr']);
     }
     if (globals['cstmItmMossDelay']) { // Отображение мха
       /*    let rgbMoss = hexToRgb(globals['cstmItmMossClr']);
@@ -955,7 +952,6 @@ function cw3() {
             .cage_items[style*='things/75.png'], .cage_items[style*='things/78.png'], .cage_items[style*='things/95.png'] {
             background-color: rgba (43, 255, 117, 0.25) !important;}`
       $('#cstmItmStyle').append(cstmItmMoss);
-      console.log('Цвет подсветки МХА ' + globals['cstmItmMossClr']);
     }
     if (globals['cstmItmWebDelay']) { // Отображение паутины
       /*    let rgbWeb = hexToRgb(globals['cstmItmWebClr']);
@@ -966,7 +962,6 @@ function cw3() {
             background-color: rgba (43, 255, 117, 0.25) !important;}
             `
       $('#cstmItmStyle').append(cstmItmWeb);
-      console.log('Цвет подсветки ПАУТИНЫ ' + globals['cstmItmWebClr']);
     }
     /*    if (globals['cstmItmStickDelay']) { // Отображение STICKS.
           let rgbStick = hexToRgb(globals['cstmItmStickClr']);
@@ -977,7 +972,6 @@ function cw3() {
             background-color: rgba (43, 255, 117, 0.25) !important;}
             `
     $('#cstmItmStyle').append(cstmItmSticks);
-    console.log('Цвет подсветки STICKS ' + globals['cstmItmStickClr']);
   }
   if (globals['cstmItmDustDelay']) { // Отображение Звёздной Пыли
     /*      let rgbDust = hexToRgb(globals['cstmItmDustClr']);
@@ -987,7 +981,6 @@ function cw3() {
             .cage_items[style*='things/94.png'], .cage_items[style*='things/385.png'], .cage_items[style*='things/386.png'], .cage_items[style*='things/387.png'], .cage_items[style*='things/388.png'], .cage_items[style*='things/389.png'], .cage_items[style*='things/390.png'], .cage_items[style*='things/391.png'], .cage_items[style*='things/392.png'] {
             background-color: rgba (192, 150, 226, 0.25) !important;}
             `
-    console.log('Цвет подсветки ПЫЛИ ' + globals['cstmItmDustClr']);
   }
   if (globals['cstmItmMusorDelay']) {
     /*      let rgbMusor = hexToRgb(globals['cstmItmMusorClr']);
