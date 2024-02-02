@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name         CatWarScript
-// @version      0.1
+// @name         CatWar Script
+// @version      0.1.1
 // @description  Новый код-скрипт для браузерной игры CatWar, разработчики которого направлены на больший контакт с аудиторией!
 // @author       Krivodushie & Psiii
 // @copyright    2024 Дурное Сновидение (https://catwar.su/cat1293224) & Заря (https://catwar.su/cat590698)
@@ -16,10 +16,11 @@
 // ==/UserScript==
 
 const csDefaults = {
-   'textTemplates': true // Шаблоны в ЛС (и в будущем в других местах)
+    'textTemplates': true // Шаблоны в ЛС (и в будущем в других местах)
     ,'inGameClock': false // Часы в игровой
     ,'isClockMoscow': true // Московсике ли часы?
     ,'isDateShow': true // Показывать ли дату?
+    ,'movableClocks': false // Перетаскиваемые часы
     ,'fieldHideButton': true // Кнопочка "Скрыть поле" в ПК-версии игры
     ,'phoneFightPanel': false // Переместить кнопочки боережима для телефонщиков
     ,'friendlyCatWar': false // Удалить кнопки захода в опасные БР
@@ -48,6 +49,7 @@ const csDefaults = {
     ,'cstmDfctShowPodstilki' : false // Показывать podstilki
     ,'cstmDfctShow34WoundBetter': true // Показывать ли 3-4 стадии ран сильнее?
     ,'cstmDfctShowAllBetter': false // Показывать ли 3-4 стадии ВСЕГО сильнее?
+    ,'darkCatTooltip': false // Тёмное окошко инфы о котах
     ,'customItemsDelay': false // Подробная настройка отображения предметов в Игровой
     ,'cstmItmHerbDelay': false // Травы
     ,'cstmItmHerbClr': '#2bff75' // Травы
@@ -62,9 +64,9 @@ const csDefaults = {
     ,'cstmItmMusorDelay' : false // MUSOR
     ,'cstmItmMusorClr' : '#ff2b2b' // MUSOR
     ,'cstmItmOpacity': '0.25' // Прозрачность отображения ресурсов
-  ,'scrollDownTime': false // Время при прокрутке страницы вниз для ПК-версии игры
-  ,'rllyImportantButton': true // РЕАЛЬНО важная кнопка
-  ,'boneCorrectTimer': false // Таймер ношения костоправов
+   ,'scrollDownTime': false // Время при прокрутке страницы вниз для ПК-версии игры
+   ,'rllyImportantButton': true // РЕАЛЬНО важная кнопка
+   ,'boneCorrectTimer': false // Таймер ношения костоправов
 };
 
 const globals = {}; //Настройки
@@ -176,6 +178,7 @@ function sett() {
   const html = `<br><br><div id="cwsSet"><i>(c) CWScript</i><b>Настройки</b><div id="cwsSetList"><div><input class="cs-set" id="textTemplates" type="checkbox"${globals.textTemplates?' checked':''}><label for="textTemplates">Отображать шаблоны для личных сообщений</label></div><hr>
                 <div><input class="cs-set" id="inGameClock" type="checkbox"${globals.inGameClock?' checked':''}><label for="inGameClock">Включить часы</label></div>
                 <div><input class="cs-set" id="showDate" type="checkbox"${globals.isDateShow?' checked':''}><label for="showDate">Показывать дату</label></div>
+                <div><input class="cs-set" id="movableClocks" type="checkbox"${globals.movableClocks?' checked':''}><label for="movableClocks">Перетаскиваемый блок часов (на телефонах перетаскивание пока не работает)</label></div>
                 <table><tr><td><div><input class="cs-set" id="deviceTime" type="radio" name="timeSource"${!globals.isClockMoscow?' checked':''}><label for="deviceTime">Время с устройства</label></div></td>
                 <td><div><input class="cs-set" id="moscowTime" type="radio" name="timeSource"${globals.isClockMoscow?' checked':''}><label for="moscowTime">Московское время</label></div></td></tr></table><hr>
                 <div><input class="cs-set" id="phoneFightPanel" type="checkbox"${globals.phoneFightPanel?' checked':''}><label for="phoneFightPanel">Переместить кнопочки окошка БР для телефонщиков</label></div><hr>
@@ -193,6 +196,7 @@ function sett() {
                 <div><input class="cs-set" id="cstmDfctShowAllBetter" type="checkbox"${globals.cstmDfctShowAllBetter?' checked':''}><label for="cstmDfctShowAllBetter">Выделять сильнее 3-4 стадии всех болезней</label></div><hr>
                 <div><input class="cs-set" id="cstmDfctShowDivers" type="checkbox"${globals.cstmDfctShowDivers?' checked':''}><label for="cstmDfctShowDivers">Показывать ныряющих</label></div><hr>
                 <div><input class="cs-set" id="cstmDfctShowPodstilki" type="checkbox"${globals.cstmDfctShowPodstilki?' checked':''}><label for="cstmDfctShowPodstilki">Показывать заподстиленных</label></div><hr>
+                <div><input class="cs-set" id="darkCatTooltip" type="checkbox"${globals.darkCatTooltip?' checked':''}><label for="darkCatTooltip">Тёмное окошко информации о персонажах в игрвой</label></div><hr>
                 <div><input class="cs-set" id="customItemsDelay" type="checkbox"${globals.customItemsDelay?' checked':''}><label for="customItemsDelay">Подсвечивание клеток с полезными ресурсами в Игровой</label></div>
                 <div><input class="cs-set" id="cstmItmHerbDelay" type="checkbox"${globals.cstmItmHerbDelay?' checked':''}><label for="cstmItmHerbDelay">Подсвечивать травы, мёд и целебные водоросли</label></div>
                 <div><input class="cs-set" id="cstmItmMossDelay" type="checkbox"${globals.cstmItmMossDelay?' checked':''}><label for="cstmItmMossDelay">Подсвечивать мох (обычный, водяной, с желчью)</label></div>
@@ -208,11 +212,9 @@ function sett() {
       if (!userConfirmation) {
         this.checked = true;
       }
-      else {
-      }
+      else {}
     }
-    else {
-    }
+    else {}
   });
   let cssForSett = `<style>
                 div#cwsSet>b {
@@ -374,7 +376,13 @@ function sett() {
 function dm() {
   if (globals['dontReadenLS']) {
     function updateDontReadCounter() {
-      let count = $('.dontReaden').length;
+      let count = 0;
+      for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+        if (key.startsWith('message')) {
+          count++;
+        }
+      }
       localStorage.setItem('dontReadenCount', count);
       $('#dontReadCounter').text(count > 0 ? '(' + count + ')' : '');
     }
@@ -383,7 +391,8 @@ function dm() {
       $('#messList tr').each(function() {
         if (!$(this).hasClass('msg_notRead') && !$(this).find('.dontReadButton').length) {
           $(this).append('<td><button class="dontReadButton">Н</button></td>');
-          if (localStorage.getItem('message' + $(this).index())) {
+          let messageId = $(this).find('a.msg_open').data('id');
+          if (localStorage.getItem('message' + messageId)) {
             $(this).addClass('dontReaden');
           }
         }
@@ -391,58 +400,33 @@ function dm() {
     }
     $(document).on('click', '.dontReadButton', function() {
       let row = $(this).closest('tr');
+      let messageId = row.find('a.msg_open').data('id');
       if (row.hasClass('dontReaden')) {
         row.removeClass('dontReaden');
-        localStorage.removeItem('message' + row.index());
+        localStorage.removeItem('message' + messageId);
       }
       else {
         row.addClass('dontReaden');
-        localStorage.setItem('message' + row.index(), true);
+        localStorage.setItem('message' + messageId, true);
       }
       updateDontReadCounter();
     });
     $(document).on('click', '.msg_open', function() {
       let row = $(this).closest('tr');
       if (row.hasClass('dontReaden')) {
+        let messageId = row.find('a.msg_open').data('id');
         row.removeClass('dontReaden');
-        localStorage.removeItem('message' + row.index());
+        localStorage.removeItem('message' + messageId);
         updateDontReadCounter();
       }
     });
-    setInterval(updateDontReadenMessages, 1000);
-    setInterval(updateDontReadCounter, 1000);
+    setInterval(function() {
+      updateDontReadenMessages();
+      updateDontReadCounter();
+    }, 1000);
     let dontreadencss = `<style>.dontReaden {
-    background-color: #bb8deb;}</style>`
+background-color: #bb8deb;}</style>`
     $('head').append(dontreadencss);
-  }
-  if (globals['timerForLS']) {
-    let script = document.createElement('script');
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js";
-    document.getElementsByTagName('head')[0].appendChild(script);
-
-    function updateMessageStyles() {
-      if (typeof moment !== "undefined") {
-        let now = moment();
-        $('#messList tr').each(function(index, element) {
-          if (index === 0) return;
-          if ($(element).attr('class') === 'msg_read') {
-            return;
-          }
-          let dateText = $(element).find('td:nth-child(3)').text();
-          let messageDate = moment(dateText, 'YYYY-MM-DD HH:mm:ss');
-          let diffDays = now.diff(messageDate, 'days');
-          if (diffDays > 6 && diffDays <= 14) {
-            $(element).addClass('old-message');
-            $(element).css('background-color', '#ff7777');
-          }
-        });
-      }
-      else {
-        setTimeout(updateMessageStyles, 100);
-      }
-    }
-    updateMessageStyles();
-    setInterval(updateMessageStyles, 1000);
   }
   if (globals['textTemplates']) {
     function checkForForm() {
@@ -475,7 +459,6 @@ function dm() {
 
         function initScript() {
           'use strict';
-          console.log('Script loaded successfully');
           let templates = localStorage.getItem('templates') ? JSON.parse(localStorage.getItem('templates')) : [];
 
           function renderTemplates() {
@@ -485,24 +468,19 @@ function dm() {
               let templateText = '<div class="patternline"><a href="#" class="name" data-index="' + index + '">' + template.name + '</a> <a href="#" class="delete" data-index="' + index + '">[X]</a> <a href="#" class="edit" data-index="' + index + '">[✍]</a><hr><div>';
               list.append(templateText);
             });
-            console.log('Templates rendered successfully');
           }
           let writeForm = $('form#write_form');
           if (writeForm.length === 0) {
-            console.error('Write form not found');
             return;
           }
-          console.log('Write form found');
           writeForm.find('.patternblock').remove();
           writeForm.prepend('<div class="patternblock"><i>(c) CWScript</i><b>Шаблоны</b><div class="patternlist"></div></div>');
           let patternBlock = writeForm.find('.patternblock');
           let createButton = $('<a href="#" id="createButton">Создать новый шаблон</a>').click(function(e) {
             e.preventDefault();
-            console.log('Create button clicked');
             $(this).hide();
             let inputField = $('<input type="text" id="templateName" placeholder="Введите название шаблона"></input>');
             let okButton = $('<button id="templateBtnOK" class="templateBtns">OK</button>').click(function() {
-              console.log('OK button clicked');
               let templateName = inputField.val();
               if (templateName) {
                 let currentContent = $('#text').val();
@@ -520,7 +498,6 @@ function dm() {
               }
             });
             let cancelButton = $('<button id="templateBtnUndo" class="templateBtns">Отмена</button>').click(function() {
-              console.log('Cancel button clicked');
               inputField.remove();
               okButton.remove();
               cancelButton.remove();
@@ -553,7 +530,6 @@ function dm() {
               }
               saveButton.off('click').click(function(e) {
                 e.preventDefault();
-                console.log('Save changes button clicked');
                 let editedContent = $('#text').val();
                 templates[templateIndex].content = editedContent;
                 localStorage.setItem('templates', JSON.stringify(templates));
@@ -690,7 +666,72 @@ function dm() {
 
 function cw3() {
   if (globals['inGameClock']) {
-    let clockHtml = `<div id="clockContainer">
+    if (globals['movableClocks']) {
+      (function() {
+        function injectDateTime() {
+          let htmlClock = `
+            <div id="clockContainer">
+                <div id="clock"></div>
+                <div id="date"></div>
+            </div>
+            <style>
+                div#clockContainer {
+                    position: absolute;
+                    z-index: 9999;
+                    cursor: move;
+                    font-family: Montserrat;
+                    background-color: var(--bckgClr1);
+                    border: 3px solid var(--brdrClr1);
+                    color: var(--txtClr1);
+                    padding: 5px 5px 5px 10px;
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+            </style>
+        `;
+          $("body").append(htmlClock);
+          var dateTimeContainer = document.getElementById('clockContainer');
+          var savedPosition = JSON.parse(localStorage.getItem('dateTimePosition'));
+          if (savedPosition) {
+            dateTimeContainer.style.left = savedPosition.left;
+            dateTimeContainer.style.top = savedPosition.top;
+          }
+          else {
+            dateTimeContainer.style.left = '0px';
+            dateTimeContainer.style.top = '0px';
+          }
+          let isDragging = false;
+          let initialX = 0;
+          let initialY = 0;
+          dateTimeContainer.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            initialX = e.pageX - parseInt(dateTimeContainer.style.left);
+            initialY = e.pageY - parseInt(dateTimeContainer.style.top);
+          });
+          document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+              e.preventDefault();
+              dateTimeContainer.style.right = 'unset';
+              dateTimeContainer.style.left = (e.pageX - initialX) + 'px';
+              dateTimeContainer.style.top = (e.pageY - initialY) + 'px';
+            }
+          });
+          document.addEventListener('mouseup', function() {
+            isDragging = false;
+            if (dateTimeContainer) {
+              var currentPosition = {
+                left: dateTimeContainer.style.left,
+                top: dateTimeContainer.style.top
+              };
+              localStorage.setItem('dateTimePosition', JSON.stringify(currentPosition));
+            }
+          });
+        }
+        window.addEventListener('load', injectDateTime);
+      })();
+    }
+    if (!globals['movableClocks']) {
+      let clockHtml = `<div id="clockContainer">
             <div id="clock"></div>
             <div id="date"></div>
             </div>
@@ -704,70 +745,51 @@ function cw3() {
             font-weight: bold;
             font-size: 15px; }
             </style>`
-    $('#tr_actions').after(clockHtml);
+      $('#tr_actions').after(clockHtml);
+    }
   }
   if (globals['customDefectDelay']) { // Включить отображение дефектов в игровой
     let cstmDfctStyle = `<style id='cstmDfctStyle'></style>`
     $('head').append(cstmDfctStyle);
-    /* $(document).ready(function() {
-       $('div.d').each(function() {
-         var style = $(this).attr('style');
-         if (style.includes('disease')) {
-           $(this).addClass('disease');
-         }
-         if (style.includes('trauma')) {
-           $(this).addClass('trauma');
-         }
-         if (style.includes('drown')) {
-           $(this).addClass('drown');
-         }
-         if (style.includes('wound')) {
-           $(this).addClass('wound');
-         }
-         if (style.includes('poisoning')) {
-           $(this).addClass('poisoning');
-         }
-       });
-     }); */
     if (globals['cstmDfctShowColors']) { // Включить подсветку клетки с больными
       let cstmDfctColors = `
             /* КАШЕЛЬ */
             #tr_field [style*='disease'] {
             background-color: rgba(238, 255, 70, .25) !important;
             padding-top: 16px; }
-            
+
             ol.mouth>li>div.e>div[style*='disease'] {
             padding-top: 0px !important; }
-            
+
             /* СКАЛЫ */
             #tr_field [style*='trauma'] {
             background-color: rgba(70, 255, 239, .25) !important;
             padding-top: 16px; }
-            
+
             ol.mouth>li>div.e>div[style*='trauma'] {
             padding-top: 0px !important; }
-            
+
             /* ВОДЫ */
             #tr_field [style*='drown'] {
             background-color: rgba(104, 255, 70, .25) !important;
             padding-top: 16px; }
-            
+
             ol.mouth>li>div.e>div[style*='drown'] {
             padding-top: 0px !important; }
-            
+
             /* РАНЫ */
             #tr_field [style*='wound'] {
             background-color: rgba(70, 70, 255, .25) !important;
             padding-top: 16px; }
-            
+
             ol.mouth>li>div.e>div[style*='wound'] {
             padding-top: 0px !important; }
-            
+
             /* ОТРАВЛЕНИЕ */
             #tr_field [style*='poisoning'] {
             background-color: rgba(255, 70, 70, .25) !important;
             padding-top: 16px; }
-            
+
             ol.mouth>li>div.e>div[style*='poisoning'] {
             padding-top: 0px !important; }
             `
@@ -919,7 +941,6 @@ function cw3() {
       $('#cstmDfctStyle').append(cstmDfctAllBetter);
     }
   }
-  console.log(globals['cstmDfctShowDivers']);
   if (globals['cstmDfctShowDivers']) {
     let cstmDfctDivers = `<style id="dfctDivers">
             #tr_field [style*='/cw3/cats/0/costume/7.png'], [style*='/cw3/cats/-1/costume/7.png'] {
@@ -928,33 +949,21 @@ function cw3() {
             padding-left: 1.5px !important;}
             </style>`
     $('head').append(cstmDfctDivers);
-    console.log('ааааа')
   }
   if (globals['cstmDfctShowPodstilki']) {
     let cstmDfctPodstilkiDelay = `<style id="dfctPodstilki">
             #tr_field [style*='/cw3/cats/0/costume/295.png'], [style*='/cw3/cats/-1/costume/295.png'], [style*='/cw3/cats/1/costume/295.png'] {
             background-color: rgba(121, 85, 61, .25) !important;
             padding-top: 16px !important;}
-            
+
             ol.mouth>li>div.e>div[style*='/cw3/cats/0/costume/295.png'], ol.mouth>li>div.e>div[style*='/cw3/cats/-1/costume/295.png'], ol.mouth>li>div.e>div[style*='/cw3/cats/1/costume/295.png'] {
             padding-top: 0px !important; }
             </style>`
     $('head').append(cstmDfctPodstilkiDelay);
   }
   if (globals['customItemsDelay']) { // Подсветка трав и других полезных ресурсов в Игровой
-    /*  function hexToRgb(hex) {
-      let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      } : null;
-    }
-*/
     let cstmItmStyle = `<style id='cstmItmStyle'></style>`
     $('head').append(cstmItmStyle);
-    /*    let rgbHerb = hexToRgb(globals['cstmItmHerbClr']);
-          let rgbaHerb = `rgba(${rgbHerb.r}, ${rgbHerb.g}, ${rgbHerb.b}, ${globals['cstmItmOpacity']})`;*/
     if (globals['cstmItmHerbDelay']) { // Отображение трав
       let cstmItmHerbs = `
             .cage_items[style*='things/13.png'],
@@ -975,66 +984,58 @@ function cw3() {
             .cage_items[style*='things/116.png'],
             .cage_items[style*='things/119.png'],
             .cage_items[style*='things/655.png'] {
-            background-color: rgba (43, 255, 117, 0.25) !important;
-            }
+            background-color: rgba(43, 255, 117, 0.25) !important;}
             `
       $('#cstmItmStyle').append(cstmItmHerbs);
     }
     if (globals['cstmItmMossDelay']) { // Отображение мха
-      /*    let rgbMoss = hexToRgb(globals['cstmItmMossClr']);
-            let rgbaMoss = `rgba(${rgbMoss.r}, ${rgbMoss.g}, ${rgbMoss.b}, ${globals['cstmItmOpacity']})`;*/
       let cstmItmMoss = `
             /* МОХ (обычный, водяной и желчный) */
             .cage_items[style*='things/75.png'], .cage_items[style*='things/78.png'], .cage_items[style*='things/95.png'] {
-            background-color: rgba (43, 255, 117, 0.25) !important;}`
+            background-color: rgba(43, 255, 117, 0.25) !important;}`
       $('#cstmItmStyle').append(cstmItmMoss);
     }
     if (globals['cstmItmWebDelay']) { // Отображение паутины
-      /*    let rgbWeb = hexToRgb(globals['cstmItmWebClr']);
-            let rgbaWeb = `rgba(${rgbWeb.r}, ${rgbWeb.g}, ${rgbWeb.b}, ${globals['cstmItmOpacity']})`; */
       let cstmItmWeb = `
             /* ПАУТИНА */
             .cage_items[style*='things/20.png'] {
-            background-color: rgba (43, 255, 117, 0.25) !important;}
+            background-color: rgba(43, 255, 117, 0.25) !important;}
             `
       $('#cstmItmStyle').append(cstmItmWeb);
     }
-    /*    if (globals['cstmItmStickDelay']) { // Отображение STICKS.
-          let rgbStick = hexToRgb(globals['cstmItmStickClr']);
-          let rgbaStick = `rgba(${rgbStick.r}, ${rgbStick.g}, ${rgbStick.b}, ${globals['cstmItmOpacity']})`; */
-    let cstmItmSticks = `
+    if (globals['cstmItmStickDelay']) { // Отображение STICKS.
+      let cstmItmSticks = `
             /* ВЕТКИ, ВЬЮНКИ, КОСТОПРАВЫ, ПЛОТНЫЕ ВОДОРОСЛИ */
             .cage_items[style*='things/565.png'], .cage_items[style*='things/566.png'], .cage_items[style*='things/562.png'], .cage_items[style*='things/563.png'], .cage_items[style*='things/3993.png'] {
-            background-color: rgba (43, 255, 117, 0.25) !important;}
+            background-color: rgba(43, 255, 117, 0.25) !important;}
             `
-    $('#cstmItmStyle').append(cstmItmSticks);
-  }
-  if (globals['cstmItmDustDelay']) { // Отображение Звёздной Пыли
-    /*      let rgbDust = hexToRgb(globals['cstmItmDustClr']);
-            let rgbaDust = `rgba(${rgbDust.r}, ${rgbDust.g}, ${rgbDust.b}, ${globals['cstmItmOpacity']})`; */
-    let cstmItmDust = `
+      $('#cstmItmStyle').append(cstmItmSticks);
+    }
+    if (globals['cstmItmDustDelay']) { // Отображение Звёздной Пыли
+      let cstmItmDust = `
             /* ПЫЛЬ */
             .cage_items[style*='things/94.png'], .cage_items[style*='things/385.png'], .cage_items[style*='things/386.png'], .cage_items[style*='things/387.png'], .cage_items[style*='things/388.png'], .cage_items[style*='things/389.png'], .cage_items[style*='things/390.png'], .cage_items[style*='things/391.png'], .cage_items[style*='things/392.png'] {
-            background-color: rgba (192, 150, 226, 0.25) !important;}
+            background-color: rgba(192, 150, 226, 0.25) !important;}
             `
-  }
-  if (globals['cstmItmMusorDelay']) {
-    /*      let rgbMusor = hexToRgb(globals['cstmItmMusorClr']);
-            let rgbaMusor = `rgba(${rgbMusor.r}, ${rgbMusor.g}, ${rgbMusor.b}, ${globals['cstmItmOpacity']})`; */
-    let cstmItmMusor = `
+      $('#cstmItmStyle').append(cstmItmDust);
+    }
+    if (globals['cstmItmMusorDelay']) {
+      let cstmItmMusor = `
             /* КОСТИ */
             .cage_items[style*='things/985.png'], .cage_items[style*='things/986.png'], .cage_items[style*='things/987.png'], .cage_items[style*='things/988.png'], .cage_items[style*='things/989.png'] {
-            background-color: rgba (255, 43, 43, 0.25) !important;}
+            background-color: rgba(255, 43, 43, 0.25) !important;}
             /* ПАДАЛЬ, ГНИЛЬ */
             .cage_items[style*='things/44.png'], .cage_items[style*='things/180.png'] {
-            background-color: rgba (255, 43, 43, 0.25) !important;}
+            background-color: rgba(255, 43, 43, 0.25) !important;}
             /* МОХ (испорченный) */
             .cage_items[style*='things/77.png'] {
-            background-color: rgba (255, 43, 43, 0.25) !important;}
+            background-color: rgba(255, 43, 43, 0.25) !important;}
             /* МУСОР */
             .cage_items[style*='things/7801.png'], .cage_items[style*='things/7802.png'], .cage_items[style*='things/7803.png'], .cage_items[style*='things/7804.png'], .cage_items[style*='things/7805.png'], .cage_items[style*='things/7806.png'] {
-            background-color: rgba (255, 43, 43, 0.25) !important;}
+            background-color: rgba(255, 43, 43, 0.25) !important;}
             `
+      $('#cstmItmStyle').append(cstmItmMusor);
+    }
   }
   if (globals['phoneFightPanel']) {
     let dangerModes = $('input[value="T+1"], input[value="T+2"], input[value="T+3"]').clone();
@@ -1078,6 +1079,25 @@ img#block {
     $('#fightPanel input[value="T+1"]').remove();
     $('#fightPanel input[value="T+2"]').remove();
     $('#fightPanel input[value="T+3"]').remove();
+  }
+  if (globals['darkCatTooltip']) {
+    let darkCss = `<style>
+    span.cat_tooltip, span.cat_tooltip>a, span.cat_tooltip>u>a {
+    color: #a2abb5c7 !important; }
+
+span.cat_tooltip {
+background: #1a1d22ed !important;
+border: #4f4f59 0.5px solid !important;
+filter: brightness(105%); }
+
+span.cat_tooltip>[src*="odoroj"] {
+filter: brightness(70%) contrast(90%); }
+
+span.cat_tooltip>span.online {
+filter: brightness(190%) contrast(50%) opacity(95%); }
+    </style>
+    `
+    $('head').append(darkCss);
   }
 }
 
@@ -1228,7 +1248,7 @@ html {
     font-family: Verdana;
     font-size: .9em;}
     #dontReadCounter {
-    background-color: #fff;
+    background-color: #DBAEFF;
     font-weight: 700;
     color: #000;}
     </style>
