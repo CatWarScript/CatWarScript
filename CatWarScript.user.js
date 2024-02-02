@@ -6,6 +6,7 @@
 // @copyright    2024 Дурное Сновидение (https://catwar.su/cat1293224) & Заря (https://catwar.su/cat590698)
 // @license      MIT; https://opensource.org/licenses/MIT
 // @updateURL    https://openuserjs.org/meta/CatWarScript/CatWar_Script.meta.js
+// @downloadURL  https://openuserjs.org/install/CatWarScript/CatWar_Script.user.js
 // @match        *://catwar.su/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM.xmlHttpRequest
