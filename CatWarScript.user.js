@@ -5,7 +5,7 @@
 // @author       Krivodushie & Psiii
 // @copyright    2024 Дурное Сновидение (https://catwar.su/cat1293224) & Заря (https://catwar.su/cat590698)
 // @license      MIT; https://opensource.org/licenses/MIT
-// @updateURL    https://github.com/CatWarScript/CatWarScript/raw/main/CatWarScript.user.js
+// @updateURL    https://openuserjs.org/meta/CatWarScript/CatWar_Script.meta.js
 // @match        *://catwar.su/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM.xmlHttpRequest
