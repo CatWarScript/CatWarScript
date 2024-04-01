@@ -1474,10 +1474,12 @@ function cw3() {
   if (globals['deleteFPTitles']) {
     let fptitlesCss = `
         <style>
-        div#fightPanel>input.hotkey {
-        pointer-events: none; }
+        div#fightPanel input.hotkey:hover {
+        pointer-events: none;
+        }
         </style>`
     $('head').append(fptitlesCss);
+
   }
 }
 
