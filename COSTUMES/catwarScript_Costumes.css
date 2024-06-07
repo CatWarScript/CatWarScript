@@ -10,6 +10,9 @@
         div[style*="/cw3/composited/531fe90af93429e9.png"] {
         background-image: url("https://catwar.su/cw3/cats/0/costume/141.png") !important;
         background-size: 100% !important; }
+        div[style*="/cw3/composited/dc10d6e34f387a84.png"] {
+        background-image: url("https://catwar.su/cw3/cats/0/costume/12016.png") !important;
+        background-size: 100% !important; }
         div[style*="/cw3/composited/dae50e26ab33e0eb.png"]::before, div[style*="/cw3/composited/9125377ca3a9a6cb.png"]::before, div[style*="/cw3/composited/531fe90af93429e9.png"]::before {
         content: var(--svgFile) !important;
         position: absolute;
