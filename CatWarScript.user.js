@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         CatWar Script
-// @version      0.1.99
+// @version      0.1.99C
 // @description  Мод-скрипт для браузерной игры CatWar. Скоро у нас будет больше новых полезных функций!
 // @author       Krivodushie & Psiii
 // @copyright    2024 Дурное Сновидение (https://catwar.su/cat1293224) & Заря (https://catwar.su/cat590698)
@@ -12,8 +12,6 @@
 // @grant        GM.xmlHttpRequest
 // @grant        GM_addStyle
 // @require      https://code.jquery.com/jquery-3.4.1.min.js
-// @require      https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.3/jquery.scrollTo.min.js
-// @require      https://code.jquery.com/ui/1.12.1/jquery-ui.js
 // ==/UserScript==
 
 const csDefaults = {
@@ -85,6 +83,10 @@ const csDefaults = {
     ,'friendlyCatWar': false //             Удалить кнопки захода в опасные БР
     ,'deleteFPTitles': false //             Убрать тайтлы у кнопок боережима
     ,'showButterflyBots': false //          Показывать бота-бабочку для прокачки бу
+
+ // Библиотека костюмов
+    ,'costumeLibrary': true //              Библиотека костюмов
+    ,'watermarkCostumes': true //           Ватермарка на костюмах из библиотеки
 
  // Недоделанное
  // ,'hideInGameBlocks': false //           Скрывать в игровой при загрузке блоки:                     НЕТУ
@@ -283,7 +285,9 @@ function sett() {
         <div><input class="cs-set" id="boneCorrectTimer" type="checkbox"${globals.boneCorrectTimer?' checked':''}><label for="boneCorrectTimer">Таймер снятия костоправов</label></div>
         <div><input class="cs-set" id="toggleBoneTimer" type="checkbox"${globals.toggleBoneTimer?' checked':''}><label for="toggleBoneTimer">Изначально сворачивать блок таймера костоправов</label></div><hr>
         <div><input class="cs-set" id="deleteFPTitles" type="checkbox"${globals.deleteFPTitles?' checked':''}><label for="deleteFPTitles">Убрать подписи к кнопкам боережима</label></div><hr>
-        <div><input class="cs-set" id="cwscriptDarkTheme" type="checkbox"${globals.cwscriptDarkTheme?' checked':''}><label for="cwscriptDarkTheme">Тёмная тема для функций из CWScript <small>(В слудующем обновлении добавим больше тем!)</small></label></div>
+        <div><input class="cs-set" id="cwscriptDarkTheme" type="checkbox"${globals.cwscriptDarkTheme?' checked':''}><label for="cwscriptDarkTheme">Тёмная тема для функций из CWScript <small>(В слудующем обновлении добавим больше тем!)</small></label></div><hr>
+        <div><input class="cs-set" id="costumeLibrary" type="checkbox"${globals.costumeLibrary?' checked':''}><label for="costumeLibrary">Библиотека костюмов</label></div>
+        <div><input class="cs-set" id="watermarkCostumes" type="checkbox"${globals.watermarkCostumes?' checked':''}><label for="watermarkCostumes">Наш значок у костюмов, добавленных библиотекой</label></div>
         <!--<div><select id="selectInGame"><option>CWScript светлая</option><option>CWScript тёмная</option><option>CatWar светлая</option><option>Стандартная тёмная</option><option>Стандартная светлая</option></select></div><br>
         <div><select id="selectOutGame"><option>CWScript светлая</option><option>CWScript тёмная</option><option>CatWar светлая</option><option>Стандартная тёмная</option><option>Стандартная светлая</option><option>Стандартная тёмная</option></select></div>-->
         </div><br></div><br></div><br>`
@@ -1481,6 +1485,29 @@ function cw3() {
     $('head').append(fptitlesCss);
 
   }
+if (globals["costumeLibrary"]) {
+    (function() {
+  'use strict';
+  const githubUrl = 'https://raw.githubusercontent.com/CatWarScript/CatWarScript/main/COSTUMES/catwarScript_Costumes.css?raw=true';
+  $.ajax({
+    url: githubUrl,
+    dataType: 'text',
+    success: function(data) {
+      $('head').append('<style>' + data + '</style>');
+    }
+  });
+})();
+    if (globals["watermarkCostumes"]) {
+        (function() {
+  'use strict';
+  const githubUrl = 'https://raw.githubusercontent.com/CatWarScript/CatWarScript/main/COSTUMES/catwarScript_CostumesW.css?raw=true';
+  $.ajax({
+    url: githubUrl,
+    dataType: 'text',
+    success: function(data) {
+      $('head').append('<style>' + data + '</style>');
+    }});})();}}
+ // Эта скобка literally закрывает весь мир
 }
 
 // ...
@@ -1736,7 +1763,7 @@ function all() {
 
   function updateDate(now) {
     const daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-    const monthsOfYear = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+    const monthsOfYear = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
     const date = daysOfWeek[now.getDay()] + ', ' + now.getDate() + ' ' + monthsOfYear[now.getMonth()];
 
