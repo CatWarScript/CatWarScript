@@ -7,12 +7,6 @@
 
     */
 
-    div[style*="/cw3/composited/dae50e26ab33e0eb.png"]::before {
-    content: var(--svgFile) !important;
-    position: absolute;
-    bottom: -27px;
-    left: -9px;
-    transform: scale(44%); }
     div[style*="/cw3/composited/01d6cee75bce679f.png"]::before {
     content: var(--svgFile) !important;
     position: absolute;
