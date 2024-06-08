@@ -7,7 +7,19 @@
 
     */
 
-    div[style*="/cw3/composited/dae50e26ab33e0eb.png"]::before, div[style*="/cw3/composited/9125377ca3a9a6cb.png"]::before, div[style*="/cw3/composited/531fe90af93429e9.png"]::before {
+    div[style*="/cw3/composited/dae50e26ab33e0eb.png"]::before {
+    content: var(--svgFile) !important;
+    position: absolute;
+    bottom: -27px;
+    left: -9px;
+    transform: scale(44%); }
+    div[style*="/cw3/composited/01d6cee75bce679f.png"]::before {
+    content: var(--svgFile) !important;
+    position: absolute;
+    bottom: -27px;
+    left: -9px;
+    transform: scale(44%); }
+    div[style*="/cw3/composited/01eca5900e3c2993.png"]::before {
     content: var(--svgFile) !important;
     position: absolute;
     bottom: -27px;
