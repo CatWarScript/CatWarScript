@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         CatWar Script
 // @version      0.1.99C
-// @description  Мод-скрипт для браузерной игры CatWar. Скоро у нас будет больше новых полезных функций!
+// @description  Новый мод-скрипт для браузерной игры CatWar. Обычно разработчиков скрипта держат в подвале, чтобы они хоть что-то делали.
 // @author       Krivodushie & Psiii
 // @copyright    2024 Дурное Сновидение (https://catwar.su/cat1293224) & Заря (https://catwar.su/cat590698)
 // @license      MIT; https://opensource.org/licenses/MIT
