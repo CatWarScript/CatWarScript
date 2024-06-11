@@ -733,7 +733,7 @@ position: absolute;
 bottom: -27px;
 left: -9px;
 transform: scale(44%); }
-div[style*="//cw3/composited/1f8b88dd3b22f668.png "]::before, div[style*="//cw3/composited/37473f1f77891699.png"]::before {
+div[style*="/cw3/composited/1f8b88dd3b22f668.png "]::before, div[style*="/cw3/composited/37473f1f77891699.png"]::before {
 content: var(--svgFile) !important;
 position: absolute;
 bottom: -27px;
