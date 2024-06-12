@@ -902,3 +902,33 @@ position: absolute;
 bottom: -27px;
 left: -9px;
 transform: scale(44%); }
+div[style*="/cw3/composited/71abf73c85968e2c.png"]::before, div[style*="/cw3/composited/a018c8713061863c.png"]::before, div[style*="/cw3/composited/bc4e5c45ee325b14.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/7fa500f0ce5826c3.png"]::before, div[style*="/cw3/composited/7b9507441bdd96c0.png"]::before, div[style*="/cw3/composited/894c0b7e4e394e95.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/6e749cd7704b3f37.png"]::before, div[style*="/cw3/composited/9bdeef9f690606c4.png"]::before, div[style*="/cw3/composited/1d867a8ca16053d1.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/eae466cd3ca4c753.png"]::before, div[style*="/cw3/composited/81a6ae59e412ae31.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/cc0c9e42d426ab19.png"]::before, div[style*="/cw3/composited/82ed4e9f89093efb.png"]::before, div[style*="/cw3/composited/90a0eb961cea4475.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
