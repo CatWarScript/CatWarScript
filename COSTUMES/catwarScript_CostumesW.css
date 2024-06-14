@@ -1051,12 +1051,6 @@ position: absolute;
 bottom: -27px;
 left: -9px;
 transform: scale(44%); }
-div[style*="/cw3/composited/1962b918dd70629c.png"]::before {
-content: var(--svgFile) !important;
-position: absolute;
-bottom: -27px;
-left: -9px;
-transform: scale(44%); }
 div[style*="/cw3/composited/a2595a45067a8bdc.png"]::before, div[style*="/cw3/composited/f2ce2678315a0bf0.png"]::before, div[style*="/cw3/composited/15d3bc6b514317fb.png"]::before {
 content: var(--svgFile) !important;
 position: absolute;
@@ -1093,7 +1087,37 @@ position: absolute;
 bottom: -27px;
 left: -9px;
 transform: scale(44%); }
+div[style*="/cw3/composited/1fe30233f1c09b02.png"]::before, div[style*="/cw3/composited/d2dffcabfce1e133.png"]::before, div[style*="/cw3/composited/30e42f9fbe771bbe.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
 div[style*="/cw3/composited/a7ff8b8c3c70f69c.png"]::before, div[style*="/cw3/composited/06779741bf8bf6ba.png"]::before, div[style*="/cw3/composited/e1657fdb6defffae.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/bca7cdc3cc1d0417.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/b349830e5a6d9727.png"]::before, div[style*="/cw3/composited/a10286b76a5cca4f.png"]::before, div[style*="/cw3/composited/fec833bfe955e5cc.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/a30a298b50c350dd.png"]::before {
+content: var(--svgFile) !important;
+position: absolute;
+bottom: -27px;
+left: -9px;
+transform: scale(44%); }
+div[style*="/cw3/composited/1c6fba98871fe942.png"]::before, div[style*="/cw3/composited/40116d25f51cbc4e.png"]::before, div[style*="/cw3/composited/34043cbd4408b448.png"]::before {
 content: var(--svgFile) !important;
 position: absolute;
 bottom: -27px;
