@@ -4,3 +4,5 @@ div[style*="/cw3/composited/01eca5900e3c2993.png"] {background-image: url("https
 div[style*="/cw3/composited/5751f84e6f635133.png"] {background-image: url("https://d.zaix.ru/HYmM.png"), url("/cw3/composited/5751f84e6f635133.png") !important;}
 div[style*="/cw3/composited/850024755118de0f.png"] {background-image: url("http://d.zaix.ru/HyBi.png"), url("/cw3/composited/850024755118de0f.png") !important;}
 div[style*="/cw3/composited/626fd09b10e4845e.png"] {background-image: url("https://d.zaix.ru/HYmL.png"), url("/cw3/composited/626fd09b10e4845e.png") !important;}
+
+div[style*="/cw3/composited/69ff5c03e9523aa5.png"] ~ div[style*="/tongue.gif"] {display: none;}
