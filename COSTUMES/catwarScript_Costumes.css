@@ -1,13 +1,13 @@
-div[style*="/cw3/composited/dae50e26ab33e0eb.png"] {background-image: url("https://catwar.su/cw3/cats/0/costume/956.png"), url("/cw3/composited/dae50e26ab33e0eb.png") !important;}
+div[style*="/cw3/composited/dae50e26ab33e0eb.png"] {background-image: url("https://catwar.su/cw3/cats/0/costume/956.png"), url("https://raw.githubusercontent.com/CatWarScript/myFiles/main/hlebobnova.png"), url("/cw3/composited/dae50e26ab33e0eb.png") !important;}
 div[style*="/cw3/composited/b3adc5468b452c7b.png"] {background-image: url("https://catwar.su/cw3/cats/0/costume/957.png"), url("/cw3/composited/b3adc5468b452c7b.png") !important;}
 div[style*="/cw3/composited/01eca5900e3c2993.png"] {background-image: url("https://d.zaix.ru/z5jI.png") !important;}
 div[style*="/cw3/composited/5751f84e6f635133.png"] {background-image: url("https://d.zaix.ru/HYmM.png"), url("/cw3/composited/5751f84e6f635133.png") !important;}
 div[style*="/cw3/composited/850024755118de0f.png"] {background-image: url("http://d.zaix.ru/HyBi.png"), url("/cw3/composited/850024755118de0f.png") !important;}
 div[style*="/cw3/composited/626fd09b10e4845e.png"] {background-image: url("https://d.zaix.ru/HYmL.png"), url("/cw3/composited/626fd09b10e4845e.png") !important;}
 
-div[style*="/cw3/composited/3832028e9a0c609d.png"] ~ div[style*="/tongue.gif"] {
+/* div[style*=/cw3/composited/dae50e26ab33e0eb.png"] ~ div[style*="/tongue.gif"] {
   background-image: url("https://raw.githubusercontent.com/CatWarScript/myFiles/main/hleb.png") !important;
-}
+} */
 
 
 
