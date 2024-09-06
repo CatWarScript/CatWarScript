@@ -1052,6 +1052,7 @@
     }
 
     function changeCW3Page() {
+
       const menu = $('.small').first();
       //const isMale = /Мой кот/.test(menu.text());
       const target = globals.newPageMenu ? 'target="_blank"' : '';
@@ -1076,6 +1077,27 @@
       menuButtons[smenuSniff] = `<a ${target} href="/sniff">Лента</a>`;
       menuButtons[smenuSett] = `<a ${target} href="/settings#cwmod">Настройки</a>`;
       menuButtons[smenuMobile] = `<a href="/mobile">Сменить версию</a>`;
+      if (globals.menuAbout) {
+        $('.small').append('| <a href="/about">Об игре</a> ');
+      }
+      if (globals.menuTop) {
+        $('.small').append('| <a href="/top">СИ</a> ');
+      }
+      if (globals.menuLS0) {
+        $('.small').append('| <a href="/ls?id=0">Памятка</a> ');
+      }
+      if (globals.menuBlogs) {
+        $('.small').append('| <a href="/blogs">Блоги</a> ');
+      }
+      if (globals.menuSniff) {
+        $('.small').append('| <a href="/sniff">Лента</a> ');
+      }
+      if (globals.menuSett) {
+        $('.small').append('| <a href="/settings#cwmod">Настройки</a> ');
+      }
+      if (globals.menuMobile) {
+        $('.small').append('| <a href="/mobile">Сменить версию</a> ');
+      }
 
       Object.keys(menuButtons).forEach(function (key) {
         if (globals.key) {
@@ -2889,6 +2911,8 @@ if (globals.cw3SnowWeather) {
         <label for="menuMobile">Сменить версию</label>
       </div>
     </div>
+    <input class="cwmod-settings" id="paramInfo" type="checkbox" ${globals.paramInfo ? 'checked' : ''}>
+        <label for="paramInfo">Параметры подробно</label>
   </div>
   <div id="cmStyle">
     <h4>Оформление</h4>
