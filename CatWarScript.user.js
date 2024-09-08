@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         CatWar Script
-// @version      1.0
+// @version      1.0.1
 // @description  Новый мод-скрипт для браузерной игры CatWar. Админы скрипта летом вышли и потрогали траву.
 // @author       Krivodushie & Psiii
 // @copyright    2024 Запал (https://catwar.su/cat1562064) & Весело (https://catwar.su/cat590698)
@@ -771,7 +771,7 @@ display: grid;
 justify-content: start;
 margin: 0px 15px 0px 0px; }
 
-button#formButton:hover, button#customButton:hover, button#clearDontReadButton:hover, select#tmVariant:hover, select#selTheme:hover, input.cs-set[type="color"]:hover, input.cs-set[type="number"]:hover, input#inputImport:hover, button#inputExport:hover, input#outputExport:hover, select#cwmodTheme:hover, select#cw3Bkg:hover, input#cw3BkgImg:hover, select#cw3BkgSize:hover, select#cw3BkgPos:hover, input.cwmod-settings[type="text"]:hover, input.cwmod-settings[type="number"]:hover, input.cwmod-data-export:hover, input.cwmod-data-import:hover, input.cwmod-data-merge:hover, input#clear-ym-storage:hover {
+button#formButton:hover, button#customButton:hover, button#clearDontReadButton:hover, select#tmVariant:hover, select#selTheme:hover, input.cs-set[type="color"]:hover, input.cs-set[type="number"]:hover, input#inputImport:hover, button#inputExport:hover, input#outputExport:hover, select#cwmodTheme:hover, select#cw3Bkg:hover, input#cw3BkgImg:hover, select#cw3BkgSize:hover, select#cw3BkgPos:hover, input.cwmod-settings[type="text"]:hover, input.cwmod-settings[type="number"]:hover, input.cwmod-data-export:hover, input.cwmod-data-import:hover, input.cwmod-data-merge:hover, input#clear-ym-storage:hover, button#resetDefectSettings:hover, button#resetItemSettings:hover {
 border: 2px solid var(--cwsc-brdr-2) !important; }
 
 button#formButton {
@@ -889,6 +889,17 @@ border-radius: 3px !important;
 width: fit-content;
 padding: 2px 5px;
 margin: 0px 0px;
+text-decoration: none;
+font-size: 13px; }
+
+button#resetDefectSettings, button#resetItemSettings {
+background-color: var(--cwsc-inpt-1);
+color: var(--cwsc-txt-4) !important;
+border: 2px solid var(--cwsc-brdr-3);
+border-radius: 3px !important;
+width: 35%;
+padding: 2px 5px;
+margin: 0px 0px 10px;
 text-decoration: none;
 font-size: 13px; }
 
@@ -1135,6 +1146,7 @@ font-size: 13px; }
              <td><input class="cs-set" id="cdSGryaz4" type="checkbox"${globals.cdSGryaz4?' checked':''}><input class="cs-set" id="cdSGryaz4B" type="checkbox"${globals.cdSGryaz4B?' checked':''}></td>
            </tr>
          </table><br>
+           <button id="resetDefectSettings">Сбросить настройки дефектов</button>
          <table class="sliderTable"><tr><td class="csSlider"><div class="cs-set cs-set-sl" id="cdOpacity"></div></td><td class="csLabel"><label for="cdOpacity"><small><i>Прозрачность</i></small></label></td></tr></table>
        </div><br>
 
@@ -1173,6 +1185,7 @@ font-size: 13px; }
              <td colspan="2"><input class="cs-set" id="ciSMusor" type="checkbox"${globals.ciSMusor?' checked':''}>
            </tr>
          </table><br>
+         <button id="resetItemSettings">Сбросить настройки предметов</button>
          <table class="sliderTable"><tr><td class="csSlider"><div class="cs-set cs-set-sl" id="ciOpacity"></div></td><td class="csLabel"><label for="ciOpacity"><small><i>Прозрачность</i></small></label></td></tr></table>
        </div>
     </div>
@@ -1272,15 +1285,23 @@ $(document).ready(function() { let clickCount = 0; $("#clRemoveAllTongues").clic
      peredvinutBloki("div#cwa_sett", "#div3")
     });
 
-    $(document).ready(function() {
-     const deleteLinks = $('a[href="del"]:contains("Удалить персонажа")');
-      $('#cwsSet hr, #cwsSet div hr, #cwsSet div div hr').addClass('legit');
-       deleteLinks.each(function() {
-        const previousHR = $(this).prevAll('hr');
-        previousHR.addClass('legit');
-       });
-      $('hr:not(.legit)').remove();
+$(document).ready(function() {
+  setTimeout(function() {
+    const deleteLinks = $('a[href="del"]:contains("Удалить персонажа")');
+    $('#cwsSet hr, #cwsSet div hr, #cwsSet div div hr').addClass('legit');
+
+    // Добавляем класс 'legit' к hr с id 'uwu-hr'
+    $('#uwu-hr').addClass('legit');
+    $('div#uwusettings hr').addClass('legit');
+    deleteLinks.each(function() {
+      const previousHR = $(this).prevAll('hr');
+      previousHR.addClass('legit');
     });
+
+    // Удаляем все hr, кроме тех, которые имеют класс 'legit'
+    $('hr:not(.legit)').remove();
+  }, 700);
+});
 
   appendToElementOrFallback('#branch', 'a[href="del"]', html);
 
@@ -1319,7 +1340,6 @@ $(document).ready(function() {
   });
 });
 $('#clearDontReadButton').on('click', clearDontReadMessages);
-
 
   $('.cs-set').not('.cs-set-sl').on('change', function() {
       let key = this.id;
@@ -1393,8 +1413,8 @@ $('input[name="iscdsramki"]').on('change', function() {
     });
   });
 
-  let settingsToResetDfct = [ 'customDefectDelay', 'cstmDfctWounds', 'cstmDfctBruise', 'cstmDfctFractures', 'cstmDfctPoison', 'cstmDfctCough', 'cstmDfctDirt', 'cstmDfctOpacity', 'cstmDfctShowColors', 'cstmDfctShowNum', 'cstmDfctShowHighDirt', 'cstmDfctShowLowDirt', 'cstmDfctShow34WoundBetter', 'cstmDfctShowAllBetter' ];
-  let settingsToResetItm = [ 'customItemsDelay', 'cstmItmHerbDelay', 'cstmItmHerbClr', 'cstmItmMossDelay', 'cstmItmMossClr', 'cstmItmWebDelay', 'cstmItmWebClr', 'cstmItmStickDelay', 'cstmItmStickClr', 'cstmItmDustDelay', 'cstmItmDustClr', 'cstmItmOpacity', 'cstmItmMusorDelay', 'cstmItmMusorClr' ];
+  let settingsToResetDfct = [ 'customDefects', 'cdSColors', 'cdSRamki', 'cdOpacity', 'cdSIcon', 'cdCRani', 'cdSRani1', 'cdSRani2', 'cdSRani3', 'cdSRani3B', 'cdSRani4', 'cdSRani4B', 'cdCPoison', 'cdSPoison1', 'cdSPoison2', 'cdSPoison3', 'cdSPoison3B', 'cdSPoison4', 'cdSPoison4B', 'cdCTrauma', 'cdSTrauma1', 'cdSTrauma2', 'cdSTrauma3', 'cdSTrauma3B', 'cdSTrauma4', 'cdSTrauma4B', 'cdCDrown', 'cdSDrown1', 'cdSDrown2', 'cdSDrown3', 'cdSDrown3B', 'cdSDrown4', 'cdSDrown4B', 'cdCGryaz', 'cdSGryaz1', 'cdSGryaz2', 'cdSGryaz3', 'cdSGryaz3B', 'cdSGryaz4', 'cdSGryaz4B', 'cdSCough', 'cdCCough', 'cdSPodstilki', 'cdCPodstilki', 'cdSDivers' ];
+  let settingsToResetItm = [ 'customItems', 'ciSHerb', 'ciCHerb', 'ciSMoss', 'ciCMoss', 'ciSWeb', 'ciCWeb', 'ciSStick', 'ciCStick', 'ciSDust', 'ciCDust', 'ciSMusor', 'ciCMusor', 'ciOpacity' ];
   $('#resetDefectSettings').on('click', function() { resetSettings(settingsToResetDfct); });
   $('#resetItemSettings').on('click', function() { resetSettings(settingsToResetItm); });
 
@@ -2891,6 +2911,7 @@ function cw3() {
         let variable = "";
         let color = globals.ciCMoss;
         let opacity = globals.ciOpacity;
+        variable = hexToRGBA(color, opacity);
       let cstmItmMoss = `
         .cage_items[style*='things/75.png'], .cage_items[style*='things/78.png'], .cage_items[style*='things/95.png'] {
         background-color: ${variable} !important;}`
@@ -2900,6 +2921,7 @@ function cw3() {
         let variable = "";
         let color = globals.ciCWeb;
         let opacity = globals.ciOpacity;
+        variable = hexToRGBA(color, opacity);
       let cstmItmWeb = `
         .cage_items[style*='things/20.png'] {
         background-color: ${variable} !important;}`
@@ -2909,6 +2931,7 @@ function cw3() {
         let variable = "";
         let color = globals.ciCStick;
         let opacity = globals.ciOpacity;
+        variable = hexToRGBA(color, opacity);
       let cstmItmSticks = `
         .cage_items[style*='things/565.png'], .cage_items[style*='things/566.png'], .cage_items[style*='things/562.png'], .cage_items[style*='things/563.png'], .cage_items[style*='things/3993.png'] {
         background-color: ${variable} !important;}`
@@ -2918,6 +2941,7 @@ function cw3() {
         let variable = "";
         let color = globals.ciCDust;
         let opacity = globals.ciOpacity;
+        variable = hexToRGBA(color, opacity);
       let cstmItmDust = `
         .cage_items[style*='things/94.png'], .cage_items[style*='things/385.png'], .cage_items[style*='things/386.png'], .cage_items[style*='things/387.png'], .cage_items[style*='things/388.png'], .cage_items[style*='things/389.png'], .cage_items[style*='things/390.png'], .cage_items[style*='things/391.png'], .cage_items[style*='things/392.png'] {
         background-color: ${variable} !important;}`
@@ -2927,6 +2951,7 @@ function cw3() {
         let variable = "";
         let color = globals.ciCMusor;
         let opacity = globals.ciOpacity;
+        variable = hexToRGBA(color, opacity);
       let cstmItmMusor = `
         .cage_items[style*='things/985.png'], .cage_items[style*='things/986.png'], .cage_items[style*='things/987.png'], .cage_items[style*='things/988.png'], .cage_items[style*='things/989.png'] {
         background-color: ${variable} !important;}
@@ -5082,7 +5107,7 @@ function all() {
       --cwsc-brdr-1: #3F2D29;
       --cwsc-brdr-2: #AD7B3C;
       --cwsc-brdr-3: #1b1311;
-      --cwsc-brdr-4: #a07e7740;
+      --cwsc-brdr-4: #5f494540;
       --cwsc-brdr-5: #c9bdb090;
 
       --cwsc-txt-1: #180E0D;
